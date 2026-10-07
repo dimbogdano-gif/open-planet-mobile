@@ -1,0 +1,36 @@
+name: Publish character skins
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/avatar-patch.cjs
+      - .github/workflows/avatar-release.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: character-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Apply verified character fix
+        run: |
+          node tools/avatar-patch.cjs .
+          node --check assets/index-avatar-20261007.js
+      - name: Save the ready-to-play release
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets/index-avatar-20261007.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Fix human avatar loading and distinct wardrobe skins"
+            git push
+          fi
+      - name: Publish the updated game
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${{ github.repository }}/pages/builds"
