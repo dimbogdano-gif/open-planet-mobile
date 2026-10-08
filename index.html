@@ -10,6 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <script type="module" crossorigin src="./assets/index-avatar-20261007.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CQpqgw5S.css">
+    <style id="mobile-mission-position">
+      /* Keep phone missions below the balance and above the jump controls. */
+      .touch-device .mission-card {
+        top: 70px;
+        right: max(16px, env(safe-area-inset-right));
+        left: auto;
+        width: min(170px, 42vw);
+        transform: none;
+      }
+    </style>
   </head>
   <body>
     <div id="game"></div>
