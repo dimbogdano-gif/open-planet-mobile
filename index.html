@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <script src="./assets/orientation-guard-20261008.js"></script>
+    <script src="./assets/mobile-run-20261011.js"></script>
     <script type="module" crossorigin src="./assets/index-CmbFAnfD.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-Bts2_DuZ.css">
     <style id="mobile-mission-position">
@@ -20,6 +21,11 @@
         width: min(170px, 42vw);
         transform: none;
       }
+    </style>
+  <style id="mobile-run-controls">
+      .touch-actions button[data-action="run"] { background:#13251ee8; color:#edffd9; touch-action:manipulation; }
+      .touch-actions button[data-action="run"].is-pressed { background:#516c34; border-color:#dafa42; }
+      .touch-actions button[data-action="run"][hidden] { display:none; }
     </style>
   </head>
   <body>
